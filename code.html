@@ -1,0 +1,1666 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bean Haven Café</title>
+    <style>
+        /* Base Styles */
+        :root {
+            --primary: #6F4E37;
+            --secondary: #C4A484;
+            --accent: #1a1917;
+            --light: #F5F5F5;
+            --dark: #3E2723;
+            --success: #4CAF50;
+            --warning: #FFC107;
+            --danger: #F44336;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: var(--primary);
+            color: white;
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo img {
+            height: 40px;
+            margin-right: 10px;
+        }
+
+        .logo h1 {
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-left: 1.5rem;
+        }
+
+        nav ul li a {
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: var(--accent);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            background-image: linear-gradient(rgba(34, 24, 10, 0.65), rgba(34, 24, 10, 0.65)), url('Cafe interior.jpg');
+            background-size: cover;
+            background-position: center;
+            height: 80vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+            margin-top: 60px;
+            overflow: hidden;
+            animation: heroZoom 18s ease-in-out infinite alternate;
+        }
+        @keyframes heroZoom {
+            0% { background-size: 100% 100%; }
+            100% { background-size: 110% 110%; }
+        }
+        .hero::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: linear-gradient(180deg, rgba(34,24,10,0.15) 0%, rgba(34,24,10,0.45) 100%);
+            z-index: 1;
+        }
+        .hero h2, .hero p, .hero .btn {
+            position: relative;
+            z-index: 2;
+        }
+        .hero h2 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            animation: fadeInDown 1.2s cubic-bezier(.39,.575,.56,1) both;
+            text-shadow: 0 6px 32px rgba(34,24,10,0.25), 0 1px 0 #000;
+        }
+        @keyframes fadeInDown {
+            0% { opacity: 0; transform: translateY(-40px) scale(0.98); }
+            100% { opacity: 1; transform: translateY(0) scale(1); }
+        }
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            max-width: 600px;
+            color: #ffe8c7;
+            text-shadow: 0 2px 12px rgba(34,24,10,0.18);
+            animation: fadeIn 1.8s 0.2s both;
+        }
+        .hero .btn {
+            font-size: 1.15rem;
+            font-weight: 700;
+            border-radius: 6px;
+            box-shadow: 0 2px 12px rgba(34,24,10,0.12);
+            animation: fadeIn 2.2s 0.4s both;
+        }
+
+        .hero h2 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            animation: fadeIn 1s ease-in;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            max-width: 600px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 1.5rem;
+            background-color: var(--accent);
+            color: var(--dark);
+            border-radius: 4px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .btn:hover {
+            background-color: var(--secondary);
+            transform: translateY(-3px);
+        }
+
+        /* About Section */
+        .about {
+            padding: 4rem 0;
+            background-color: white;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 2rem;
+            font-size: 2rem;
+            color: var(--primary);
+        }
+
+        .about-content {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .about-text {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .about-text h3 {
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+            color: var(--primary);
+        }
+
+        .about-image {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .about-image img {
+            width: 100%;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Menu Section */
+        .menu {
+            padding: 4rem 0;
+            background-color: var(--light);
+        }
+
+        .menu-filters {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 0.6rem 1.2rem;
+            background-color: white;
+            border: 1px solid var(--primary);
+            color: var(--primary);
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .filter-btn.active,
+        .filter-btn:hover {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        .menu-items {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .menu-card {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .menu-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .menu-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .menu-card-content {
+            padding: 1.5rem;
+        }
+
+        .menu-card-content h3 {
+            margin-bottom: 0.5rem;
+            color: var(--accent);
+            text-shadow: 0 2px 8px rgba(10, 34, 19, 0.1);
+        }
+
+        .menu-card-content p {
+            margin-bottom: 1rem;
+            color: #666;
+        }
+
+        .menu-card-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .price {
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .add-to-cart {
+            background-color:  #C4A484;
+            color: var(--dark);
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .add-to-cart:hover {
+            background-color: var(--secondary);
+        }
+
+        /* Cart Sidebar */
+        .cart-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            display: none;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .cart-sidebar {
+            position: fixed;
+            top: 0;
+            right: -400px;
+            width: 100%;
+            max-width: 400px;
+            height: 100%;
+            background-color: white;
+            z-index: 1001;
+            transition: right 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .cart-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem;
+            border-bottom: 1px solid #eee;
+        }
+
+        .cart-header h2 {
+            font-size: 1.5rem;
+            color: var(--primary);
+        }
+
+        .close-cart {
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        .cart-items {
+            flex: 1;
+            overflow-y: auto;
+            padding: 1rem;
+        }
+
+        .cart-item {
+            display: flex;
+            margin-bottom: 1rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #eee;
+        }
+
+        .cart-item img {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            margin-right: 1rem;
+            border-radius: 4px;
+        }
+
+        .cart-item-details {
+            flex: 1;
+        }
+
+        .cart-item-details h3 {
+            margin-bottom: 0.5rem;
+            font-size: 1rem;
+        }
+
+        .cart-item-details p {
+            color: #666;
+            margin-bottom: 0.5rem;
+        }
+
+        .cart-item-controls {
+            display: flex;
+            align-items: center;
+        }
+
+        .quantity-btn {
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            border: none;
+            background-color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            margin: 0 0.5rem;
+        }
+
+        .remove-item {
+            margin-left: auto;
+            color: var(--danger);
+            cursor: pointer;
+        }
+
+        .cart-footer {
+            padding: 1.5rem;
+            border-top: 1px solid #eee;
+        }
+
+        .cart-total {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1.5rem;
+            font-size: 1.2rem;
+            font-weight: 700;
+        }
+
+        .checkout-btn {
+            display: block;
+            width: 100%;
+            padding: 0.8rem;
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .checkout-btn:hover {
+            background-color: var(--dark);
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 4rem 0;
+            background-color: white;
+        }
+
+        .contact-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+
+        .contact-info {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .contact-info h3 {
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .contact-info p {
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-info i {
+            margin-right: 0.5rem;
+            color: var(--primary);
+        }
+
+        .contact-form {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .form-group {
+            margin-bottom: 1rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--primary);
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        .form-group textarea {
+            height: 150px;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+        }
+
+        .social-links {
+            margin-bottom: 1rem;
+        }
+
+        .social-links a {
+            display: inline-block;
+            margin: 0 0.5rem;
+            font-size: 1.5rem;
+            transition: color 0.3s;
+        }
+
+        .social-links a:hover {
+            color: var(--accent);
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            nav ul {
+                display: none;
+                position: absolute;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                background-color: var(--primary);
+                flex-direction: column;
+                padding: 1rem 0;
+            }
+
+            nav ul.show {
+                display: flex;
+            }
+
+            nav ul li {
+                margin: 0;
+                padding: 0.8rem 1rem;
+                text-align: center;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .hero h2 {
+                font-size: 2rem;
+            }
+
+            .about-content {
+                flex-direction: column;
+            }
+        }
+
+        /* Admin Panel */
+        .admin-container {
+            margin-top: 80px;
+            padding: 2rem 0;
+        }
+
+        .admin-nav {
+            background-color: var(--primary);
+            padding: 1rem 0;
+        }
+
+        .admin-nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            flex-wrap: wrap;
+        }
+
+        .admin-nav li {
+            margin: 0 1rem;
+        }
+
+        .admin-nav a {
+            color: white;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+
+        .admin-nav a:hover {
+            background-color: var(--accent);
+            color: var(--dark);
+        }
+
+        .admin-nav a.active {
+            background-color: var(--accent);
+            color: var(--dark);
+        }
+
+        .admin-section {
+            padding: 2rem 0;
+            display: none;
+        }
+
+        .admin-section.active {
+            display: block;
+        }
+
+        .orders-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+        }
+
+        .orders-table th,
+        .orders-table td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .orders-table th {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        .orders-table tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        .status-pending {
+            color: var(--warning);
+        }
+
+        .status-preparing {
+            color: orange;
+        }
+
+        .status-ready {
+            color: var(--success);
+        }
+
+        .status-completed {
+            color: var(--primary);
+        }
+
+        .status-cancelled {
+            color: var(--danger);
+        }
+
+        .menu-management {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .menu-item-card {
+            background-color: white;
+            border-radius: 8px;
+            padding: 1.5rem;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-row {
+            margin-bottom: 1rem;
+        }
+
+        .form-row label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        .form-row input,
+        .form-row select,
+        .form-row textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        .admin-btn {
+            padding: 0.6rem 1.2rem;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: background-color 0.3s;
+        }
+
+        .btn-primary {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--dark);
+        }
+
+        .btn-danger {
+            background-color: var(--danger);
+            color: white;
+        }
+
+        .btn-danger:hover {
+            background-color: darkred;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 8px;
+            max-width: 500px;
+            width: 90%;
+            animation: fadeIn 0.3s;
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .close-modal {
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        /* Custom Checkout Modal Styles */
+        #checkout-modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(34,24,10,0.45);
+            justify-content: center;
+            align-items: center;
+            animation: fadeIn 0.3s;
+        }
+        #checkout-modal.active {
+            display: flex;
+        }
+        #checkout-modal .modal-content {
+            background: #e6ffe6; /* Soft green for thank you */
+            border-radius: 12px;
+            box-shadow: 0 8px 32px rgba(34,24,10,0.18);
+            padding: 2.5rem 2rem 2rem 2rem;
+            position: relative;
+            animation: fadeInDown 0.5s;
+        }
+        #checkout-modal h2 {
+            font-size: 2rem;
+            color: var(--primary);
+        }
+        #checkout-modal .btn {
+            background: var(--primary);
+            color: #fff;
+            border: none;
+            border-radius: 6px;
+            padding: 0.7rem 2rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-top: 0.5rem;
+            box-shadow: 0 2px 12px rgba(34,24,10,0.12);
+            transition: background 0.2s;
+        }
+        #checkout-modal .btn:hover {
+            background: var(--secondary);
+            color: var(--dark);
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <img src="https://placehold.co/40x40?text=BH" alt="Bean Haven Cafe logo featuring a coffee bean with steam rising">
+                <h1>Bean Haven</h1>
+            </div>
+            <nav>
+                <div class="mobile-menu-btn">
+                    <i class="fas fa-bars"></i>
+                </div>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#menu">Menu</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                    <li><a href="admin.html" id="admin-link">Admin</a></li> 
+                    <li><a href="registration.html" id="register-link">Register</a></li>
+                </ul>
+            </nav>
+            <div class="cart-icon">
+                <i class="fas fa-shopping-cart"></i>
+                <span class="cart-count">0</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Frontend Sections -->
+        <section id="home" class="hero">
+            <h2>Welcome to Bean Haven</h2>
+            <p>Experience the finest coffee and pastries in town, crafted with passion and served with love.</p>
+            <a href="#menu" class="btn">View Menu</a>
+        </section>
+
+        <section id="about" class="about">
+            <div class="container">
+                <h2 class="section-title">Our Story</h2>
+                <div class="about-content">
+                    <div class="about-text">
+                        <h3>A Passion for Perfection</h3>
+                        <p>Founded in 2010, Bean Haven began as a small coffee stand with a big dream - to create the perfect cup of coffee. Today, we're proud to serve our community with ethically sourced beans and homemade pastries.</p>
+                        <p>Our baristas are trained to craft each beverage with precision and care, ensuring every sip is an experience to remember.</p>
+                    </div>
+                    <div class="about-image">
+                        <img src="Cafe interior.jpg" alt="Inside view of Bean Haven cafe showing cozy seating area with wooden tables and hanging pendant lights">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="menu" class="menu">
+            <div class="container">
+                <h2 class="section-title">Our Menu</h2>
+                <div class="menu-filters">
+                    <button class="filter-btn active" data-filter="all">All</button>
+                    <button class="filter-btn" data-filter="coffee">Coffee</button>
+                    <button class="filter-btn" data-filter="tea">Tea</button>
+                    <button class="filter-btn" data-filter="food">Food</button>
+                    <button class="filter-btn" data-filter="dessert">Dessert</button>
+                </div>
+                <div class="menu-items" id="menu-container">
+                    <!-- Menu items will be dynamically loaded here -->
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="contact">
+            <div class="container">
+                <h2 class="section-title">Contact Us</h2>
+                <div class="contact-container">
+                    <div class="contact-info">
+                        <h3>Visit Us</h3>
+                        <p><i class="fas fa-map-marker-alt"></i> 123 Coffee Lane, Brewville, CA 90210</p>
+                        <p><i class="fas fa-phone"></i> (555) 123-4567</p>
+                        <p><i class="fas fa-envelope"></i> info@beanhaven.com</p>
+                        <h3 class="mt-4">Hours</h3>
+                        <p>Monday - Friday: 7am - 7pm</p>
+                        <p>Saturday - Sunday: 8am - 8pm</p>
+                    </div>
+                    <div class="contact-form">
+                        <h3>Send Us a Message</h3>
+                        <form id="contactForm">
+                            <div class="form-group">
+                                <label for="name">Name</label>
+                                <input type="text" id="name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input type="email" id="email" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="message">Message</label>
+                                <textarea id="message" required></textarea>
+                            </div>
+                            <button type="submit" class="btn">Send Message</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+
+        <!-- Order Status Modal -->
+        <div id="order-status-modal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2>Update Order Status</h2>
+                    <span class="close-modal">&times;</span>
+                </div>
+                <form id="status-form">
+                    <input type="hidden" id="order-id">
+                    <div class="form-row">
+                        <label for="status">Status</label>
+                        <select id="status" required>
+                            <option value="pending">Pending</option>
+                            <option value="preparing">Preparing</option>
+                            <option value="ready">Ready for Pickup</option>
+                            <option value="completed">Completed</option>
+                            <option value="cancelled">Cancelled</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="admin-btn btn-primary">Update Status</button>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="social-links">
+                <a href="#"><i class="fab fa-facebook"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+            </div>
+            <p>&copy; 2023 Bean Haven. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Custom Checkout Thank You Modal -->
+    <div id="checkout-modal" class="modal">
+        <div class="modal-content contact-thankyou" style="text-align:center; max-width:400px;">
+       
+
+       
+            <span class="close-modal" id="close-checkout-modal" style="float:right; font-size:2rem; cursor:pointer;">&times;</span>
+            <div style="font-size:3rem; color:var(--primary); margin-bottom:1rem;">&#9749;</div>
+            <h2 style="color:var(--primary); margin-bottom:0.5rem;">Thank You!</h2>
+            <p style="color:var(--dark); font-size:1.15rem; margin-bottom:1.5rem;">Your order is being processed.<br>We appreciate your business!</p>
+            <button class="btn" id="checkout-modal-ok">OK</button>
+        </div>
+    </div>
+
+    <!-- Custom Contact Thank You Modal -->
+    <div id="contact-modal" class="modal">
+        <div class="modal-content" style="text-align:center; max-width:400px;">
+            <span class="close-modal" id="close-contact-modal" style="float:right; font-size:2rem; cursor:pointer;">&times;</span>
+            <div style="font-size:2.5rem; color:var(--primary); margin-bottom:1rem;">&#9993;</div>
+            <h2 style="color:var(--primary); margin-bottom:0.5rem;">Thank You!</h2>
+            <p style="color:var(--dark); font-size:1.15rem; margin-bottom:1.5rem;">Thank you for your message!<br>We will get back to you soon.</p>
+            <button class="btn" id="contact-modal-ok">OK</button>
+        </div>
+    </div>
+
+    <!-- Cart Sidebar -->
+    <div class="cart-overlay" id="cart-overlay"></div>
+    <div class="cart-sidebar" id="cart-sidebar">
+        <div class="cart-header">
+            <h2>Your Cart</h2>
+            <span class="close-cart">&times;</span>
+        </div>
+        <div class="cart-items" id="cart-items-container">
+            <!-- Cart items will be loaded here -->
+        </div>
+        <div class="cart-footer">
+            <div class="cart-total">
+                <span>Total:</span>
+                <span id="cart-total-price">$0.00</span>
+            </div>
+            <button class="checkout-btn">Checkout</button>
+        </div>
+    </div>
+
+    <script>
+        // DOM Elements
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const navList = document.querySelector('nav ul');
+        const adminLink = document.getElementById('admin-link');
+        const frontendContent = document.querySelector('main');
+        const adminPanel = document.getElementById('admin-panel');
+        const adminTabLinks = document.querySelectorAll('.admin-tab');
+        const adminSections = document.querySelectorAll('.admin-section');
+        const cartOverlay = document.getElementById('cart-overlay');
+        const cartSidebar = document.getElementById('cart-sidebar');
+        const cartIcon = document.querySelector('.cart-icon');
+        const closeCart = document.querySelector('.close-cart');
+        const menuContainer = document.getElementById('menu-container');
+        const cartItemsContainer = document.getElementById('cart-items-container');
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const adminMenuItems = document.getElementById('admin-menu-items');
+        const adminOrdersList = document.getElementById('admin-orders-list');
+        const adminStaffList = document.getElementById('admin-staff-list');
+        const addMenuItemBtn = document.getElementById('add-menu-item');
+        const orderStatusModal = document.getElementById('order-status-modal');
+        const closeModalBtns = document.querySelectorAll('.close-modal');
+        const statusForm = document.getElementById('status-form');
+
+        // Data
+        let menuItems = [
+            {
+                id: 1,
+                name: "Espresso",
+                description: "A concentrated coffee beverage brewed by forcing hot water under pressure through finely ground coffee.",
+                price: 150,
+                category: "coffee",
+                image: "Espresso.jpg",
+                stock: 50
+            },
+            {
+                id: 2,
+                name: "Cappuccino",
+                description: "Espresso combined with steamed milk and silky microfoam.",
+                price: 250,
+                category: "coffee",
+                image: "Cappuccino.jpg",
+                stock: 40
+            },
+            {
+                id: 3,
+                name: "Latte",
+                description: "Espresso with a larger amount of steamed milk and a small amount of microfoam.",
+                price: 275,
+                category: "coffee",
+                image: "Latte.jpg",
+                stock: 45
+            },
+            {
+                id: 4,
+                name: "Chai Tea",
+                description: "Spiced tea concentrate mixed with steamed milk.",
+                price: 50,
+                category: "tea",
+                image: "Masala Chai.jpg",
+                stock: 35
+            },
+            {
+                id: 5,
+                name: "Avocado Toast",
+                description: "Sourdough toast topped with mashed avocado, cherry tomatoes, and feta cheese.",
+                price: 300,
+                category: "food",
+                image: "Avocado Toast.jpg",
+                stock: 20
+            },
+            {
+                id: 6,
+                name: "Chocolate Croissant",
+                description: "Buttery croissant filled with rich dark chocolate.",
+                price: 400,
+                category: "dessert",
+                image: "Croissant.jpg",
+                stock: 25
+            },
+            {
+                id: 7,
+                name: "Iced Coffee",
+                description: "Cold brewed coffee served over ice, perfect for warm days.",
+                price: 250,
+                category: "coffee",
+                image: "Iced Coffee.jpg",
+                stock: 30
+            },
+            {
+                id: 8,
+                name: "Matcha Latte",
+                description: "Organic matcha powder whisked with steamed milk for a vibrant green tea treat.",
+                price: 270,
+                category: "tea",
+                image: "Matcha Latte.jpg",
+                stock: 20
+            }
+        ];
+
+        let cart = [];
+        let orders = [
+            {
+                id: 1001,
+                customer: "John Doe",
+                phone: "555-123-4567",
+                items: [
+                    { id: 1, name: "Espresso", price: 3.50, quantity: 2 },
+                    { id: 5, name: "Avocado Toast", price: 8.50, quantity: 1 }
+                ],
+                subtotal: 15.50,
+                tax: 1.55,
+                total: 17.05,
+                status: "completed",
+                timestamp: "2023-07-20T09:15:00"
+            },
+            {
+                id: 1002,
+                customer: "Jane Smith",
+                phone: "555-987-6543",
+                items: [
+                    { id: 3, name: "Latte", price: 4.75, quantity: 1 }
+                ],
+                subtotal: 4.75,
+                tax: 0.48,
+                total: 5.23,
+                status: "preparing",
+                timestamp: "2023-07-20T10:30:00"
+            },
+            {
+                id: 1003,
+                customer: "Bob Johnson",
+                phone: "555-456-7890",
+                items: [
+                    { id: 2, name: "Cappuccino", price: 4.50, quantity: 2 },
+                    { id: 6, name: "Chocolate Croissant", price: 4.00, quantity: 3 }
+                ],
+                subtotal: 21.00,
+                tax: 2.10,
+                total: 23.10,
+                status: "ready",
+                timestamp: "2023-07-20T11:45:00"
+            }
+        ];
+
+        let staff = [
+            {
+                id: 1,
+                name: "Sarah Williams",
+                email: "sarah@beanhaven.com",
+                phone: "555-111-2222",
+                position: "Manager",
+                shift: "morning",
+                status: "active"
+            },
+            {
+                id: 2,
+                name: "Mike Johnson",
+                email: "mike@beanhaven.com",
+                phone: "555-222-3333",
+                position: "Barista",
+                shift: "morning",
+                status: "active"
+            },
+            {
+                id: 3,
+                name: "Emily Davis",
+                email: "emily@beanhaven.com",
+                phone: "555-333-4444",
+                position: "Barista",
+                shift: "afternoon",
+                status: "active"
+            },
+            {
+                id: 4,
+                name: "David Brown",
+                email: "david@beanhaven.com",
+                phone: "555-444-5555",
+                position: "Cashier",
+                shift: "evening",
+                status: "active"
+            }
+        ];
+
+        // Helper Functions
+        function formatPrice(price) {
+            return new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR', maximumFractionDigits: 2 }).format(price);
+        }
+
+        function calculateTotal() {
+            return cart.reduce((total, item) => total + (item.price * item.quantity), 0);
+        }
+
+        function updateCartCount() {
+            const totalItems = cart.reduce((count, item) => count + item.quantity, 0);
+            document.querySelector('.cart-count').textContent = totalItems;
+            document.querySelector('.cart-count').style.display = totalItems > 0 ? 'block' : 'none';
+        }
+
+        function renderMenuItems(filter = 'all') {
+            menuContainer.innerHTML = '';
+            
+            const filteredItems = filter === 'all' 
+                ? menuItems 
+                : menuItems.filter(item => item.category === filter);
+                
+            filteredItems.forEach(item => {
+                const menuItemElement = document.createElement('div');
+                menuItemElement.className = 'menu-card';
+                menuItemElement.innerHTML = `
+                    <img src="${item.image}" alt="${item.name}">
+                    <div class="menu-card-content">
+                        <h3>${item.name}</h3>
+                        <p>${item.description}</p>
+                        <div class="menu-card-footer">
+                            <span class="price">${formatPrice(item.price)}</span>
+                            <button class="add-to-cart" data-id="${item.id}">Add to Cart</button>
+                        </div>
+                    </div>
+                `;
+                menuContainer.appendChild(menuItemElement);
+            });
+        }
+
+        function renderCartItems() {
+            cartItemsContainer.innerHTML = '';
+            
+            if (cart.length === 0) {
+                cartItemsContainer.innerHTML = '<p>Your cart is empty</p>';
+                // Still need to re-attach checkout event in case button exists
+                attachCheckoutListener();
+                return;
+            }
+            
+            cart.forEach(item => {
+                const cartItemElement = document.createElement('div');
+                cartItemElement.className = 'cart-item';
+                cartItemElement.innerHTML = `
+                    <img src="${item.image}" alt="${item.name}">
+                    <div class="cart-item-details">
+                        <h3>${item.name}</h3>
+                        <p>${formatPrice(item.price)}</p>
+                        <div class="cart-item-controls">
+                            <button class="quantity-btn minus" data-id="${item.id}">-</button>
+                            <span>${item.quantity}</span>
+                            <button class="quantity-btn plus" data-id="${item.id}">+</button>
+                            <button class="remove-item" data-id="${item.id}">Remove</button>
+                        </div>
+                    </div>
+                `;
+                cartItemsContainer.appendChild(cartItemElement);
+            });
+            
+            const total = calculateTotal();
+            const tax = total * 0.1; // 10% tax
+            const totalWithTax = total + tax;
+            
+            document.getElementById('cart-total-price').textContent = formatPrice(totalWithTax);
+            // Attach checkout event after rendering
+            attachCheckoutListener();
+        // ...existing code...
+
+// Attach checkout button event listener
+function attachCheckoutListener() {
+    const checkoutBtn = document.querySelector('.checkout-btn');
+    if (checkoutBtn) {
+        // Remove previous listener if any by cloning
+        const newBtn = checkoutBtn.cloneNode(true);
+        checkoutBtn.parentNode.replaceChild(newBtn, checkoutBtn);
+        newBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            showCheckoutModal();
+        });
+    }
+}
+
+// Show custom checkout modal
+function showCheckoutModal() {
+    const modal = document.getElementById('checkout-modal');
+    if (modal) {
+        modal.classList.add('active');
+        // Always attach close listeners when showing modal
+        const closeCheckoutModal = document.getElementById('close-checkout-modal');
+        const okCheckoutModal = document.getElementById('checkout-modal-ok');
+        if (closeCheckoutModal) {
+            closeCheckoutModal.onclick = hideCheckoutModal;
+        }
+        if (okCheckoutModal) {
+            okCheckoutModal.onclick = hideCheckoutModal;
+        }
+    }
+}
+
+// Hide custom checkout modal
+function hideCheckoutModal() {
+    const modal = document.getElementById('checkout-modal');
+    if (modal) {
+        modal.classList.remove('active');
+    }
+}
+
+// Show custom contact modal
+function showContactModal() {
+    const modal = document.getElementById('contact-modal');
+    if (modal) {
+        modal.classList.add('active');
+        // Always attach close listeners when showing modal
+        const closeContactModal = document.getElementById('close-contact-modal');
+        const okContactModal = document.getElementById('contact-modal-ok');
+        if (closeContactModal) {
+            closeContactModal.onclick = hideContactModal;
+        }
+        if (okContactModal) {
+            okContactModal.onclick = hideContactModal;
+        }
+    }
+}
+
+// Hide custom contact modal
+function hideContactModal() {
+    const modal = document.getElementById('contact-modal');
+    if (modal) {
+        modal.classList.remove('active');
+    }
+}
+        }
+
+        function renderAdminMenuItems() {
+            adminMenuItems.innerHTML = '';
+            
+            menuItems.forEach(item => {
+                const menuItemElement = document.createElement('div');
+                menuItemElement.className = 'menu-item-card';
+                menuItemElement.innerHTML = `
+                    <div class="form-row">
+                        <img src="${item.image}" alt="${item.name}" style="width:100%;height:200px;object-fit:cover;margin-bottom:1rem;">
+                    </div>
+                    <div class="form-row">
+                        <label>Name</label>
+                        <input type="text" value="${item.name}" class="menu-item-name" data-id="${item.id}">
+                    </div>
+                    <div class="form-row">
+                        <label>Description</label>
+                        <textarea class="menu-item-desc" data-id="${item.id}">${item.description}</textarea>
+                    </div>
+                    <div class="form-row">
+                        <label>Price</label>
+                        <input type="number" step="0.01" value="${item.price}" class="menu-item-price" data-id="${item.id}">
+                    </div>
+                    <div class="form-row">
+                        <label>Category</label>
+                        <select class="menu-item-category" data-id="${item.id}">
+                            <option value="coffee" ${item.category === 'coffee' ? 'selected' : ''}>Coffee</option>
+                            <option value="tea" ${item.category === 'tea' ? 'selected' : ''}>Tea</option>
+                            <option value="food" ${item.category === 'food' ? 'selected' : ''}>Food</option>
+                            <option value="dessert" ${item.category === 'dessert' ? 'selected' : ''}>Dessert</option>
+                        </select>
+                    </div>
+                    <div class="form-row">
+                        <label>Stock</label>
+                        <input type="number" value="${item.stock}" class="menu-item-stock" data-id="${item.id}">
+                    </div>
+                    <div class="form-row" style="display:flex;justify-content:space-between;margin-top:1rem;">
+                        <button class="admin-btn btn-primary update-menu-item" data-id="${item.id}">Update</button>
+                        <button class="admin-btn btn-danger delete-menu-item" data-id="${item.id}">Delete</button>
+                    </div>
+                `;
+                adminMenuItems.appendChild(menuItemElement);
+            });
+        }
+
+        function renderAdminOrders() {
+            adminOrdersList.innerHTML = '';
+            
+            orders.forEach(order => {
+                const orderElement = document.createElement('tr');
+                orderElement.innerHTML = `
+                    <td>#${order.id}</td>
+                    <td>${order.customer}</td>
+                    <td>${order.items.length}</td>
+                    <td>${formatPrice(order.total)}</td>
+                    <td class="status-${order.status}">${order.status.charAt(0).toUpperCase() + order.status.slice(1)}</td>
+                    <td>
+                        <button class="admin-btn btn-primary view-order" data-id="${order.id}">View</button>
+                        <button class="admin-btn update-status" data-id="${order.id}">Update Status</button>
+                    </td>
+                `;
+                adminOrdersList.appendChild(orderElement);
+            });
+        }
+
+        function renderAdminStaff() {
+            adminStaffList.innerHTML = '';
+            
+            staff.forEach(member => {
+                const staffElement = document.createElement('div');
+                staffElement.className = 'staff-member-card';
+                staffElement.innerHTML = `
+                    <div class="form-row">
+                        <h3>${member.name}</h3>
+                    </div>
+                    <div class="form-row">
+                        <label>Email</label>
+                        <input type="email" value="${member.email}" class="staff-email" data-id="${member.id}">
+                    </div>
+                    <div class="form-row">
+                        <label>Phone</label>
+                        <input type="tel" value="${member.phone}" class="staff-phone" data-id="${member.id}">
+                    </div>
+                    <div class="form-row">
+                        <label>Position</label>
+                        <select class="staff-position" data-id="${member.id}">
+                            <option value="barista" ${member.position === 'barista' ? 'selected' : ''}>Barista</option>
+                            <option value="manager" ${member.position === 'manager' ? 'selected' : ''}>Manager</option>
+                            <option value="server" ${member.position === 'server' ? 'selected' : ''}>Server</option>
+                            <option value="cashier" ${member.position === 'cashier' ? 'selected' : ''}>Cashier</option>
+                            <option value="baker" ${member.position === 'baker' ? 'selected' : ''}>Baker</option>
+                        </select>
+                    </div>
+                    <div class="form-row">
+                        <label>Shift</label>
+                        <select class="staff-shift" data-id="${member.id}">
+                            <option value="morning" ${member.shift === 'morning' ? 'selected' : ''}>Morning (7AM-3PM)</option>
+                            <option value="afternoon" ${member.shift === 'afternoon' ? 'selected' : ''}>Afternoon (12PM-8PM)</option>
+                            <option value="evening" ${member.shift === 'evening' ? 'selected' : ''}>Evening (3PM-11PM)</option>
+                        </select>
+                    </div>
+                    <div class="form-row">
+                        <label>Status</label>
+                        <select class="staff-status" data-id="${member.id}">
+                            <option value="active" ${member.status === 'active' ? 'selected' : ''}>Active</option>
+                            <option value="inactive" ${member.status === 'inactive' ? 'selected' : ''}>Inactive</option>
+                        </select>
+                    </div>
+                    <div class="form-row" style="display:flex;justify-content:space-between;margin-top:1rem;">
+                        <button class="admin-btn btn-primary update-staff" data-id="${member.id}">Update</button>
+                    </div>
+                `;
+                adminStaffList.appendChild(staffElement);
+            });
+        }
+
+        function updateAdminStats() {
+            const today = new Date().toISOString().split('T')[0];
+            const todayOrders = orders.filter(order => order.timestamp.startsWith(today)).length;
+            const todayRevenue = orders.filter(order => order.timestamp.startsWith(today))
+                                      .reduce((sum, order) => sum + order.total, 0);
+            const activeStaff = staff.filter(member => member.status === 'active').length;
+            const lowStockItems = menuItems.filter(item => item.stock < 10).length;
+            
+            document.getElementById('admin-today-orders').textContent = todayOrders;
+            document.getElementById('admin-today-revenue').textContent = formatPrice(todayRevenue);
+            document.getElementById('admin-active-staff').textContent = activeStaff;
+            document.getElementById('admin-low-stock').textContent = lowStockItems;
+        }
+
+        // Event Listeners
+        mobileMenuBtn.addEventListener('click', () => {
+            navList.classList.toggle('show');
+        });
+
+        adminLink.addEventListener('click', (e) => {
+            e.preventDefault();
+            frontendContent.style.display = 'none';
+            adminPanel.style.display = 'block';
+            renderAdminMenuItems();
+            renderAdminOrders();
+            renderAdminStaff();
+            updateAdminStats();
+        });
+
+        adminTabLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const tabId = link.getAttribute('data-tab');
+                
+                adminTabLinks.forEach(tab => tab.classList.remove('active'));
+                adminSections.forEach(section => section.classList.remove('active'));
+                
+                link.classList.add('active');
+                document.getElementById(tabId).classList.add('active');
+            });
+        });
+
+        cartIcon.addEventListener('click', () => {
+            cartOverlay.style.display = 'block';
+            setTimeout(() => {
+                cartOverlay.style.opacity = '1';
+                cartSidebar.style.right = '0';
+            }, 10);
+        });
+
+        closeCart.addEventListener('click', closeCartSidebar);
+        cartOverlay.addEventListener('click', closeCartSidebar);
+
+        function closeCartSidebar() {
+            cartSidebar.style.right = '-400px';
+            cartOverlay.style.opacity = '0';
+            setTimeout(() => {
+                cartOverlay.style.display = 'none';
+            }, 300);
+        }
+
+        // Menu filtering
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                filterBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                renderMenuItems(btn.getAttribute('data-filter'));
+            });
+        });
+
+        // Add to cart
+        menuContainer.addEventListener('click', (e) => {
+            if (e.target.classList.contains('add-to-cart')) {
+                const itemId = parseInt(e.target.getAttribute('data-id'));
+                const menuItem = menuItems.find(item => item.id === itemId);
+                
+                if (menuItem) {
+                    const existingCartItem = cart.find(item => item.id === itemId);
+                    
+                    if (existingCartItem) {
+                        existingCartItem.quantity++;
+                    } else {
+                        cart.push({
+                            id: menuItem.id,
+                            name: menuItem.name,
+                            price: menuItem.price,
+                            image: menuItem.image,
+                            quantity: 1
+                        });
+                    }
+                    
+                    updateCartCount();
+                    renderCartItems();
+                    
+                    // Show feedback
+                    const btn = e.target;
+                    btn.textContent = 'Added!';
+                    setTimeout(() => {
+                        btn.textContent = 'Add to Cart';
+                    }, 1000);
+                }
+            }
+        });
+
+        // Cart quantity adjustments
+        cartItemsContainer.addEventListener('click', (e) => {
+            const itemId = parseInt(e.target.getAttribute('data-id'));
+            const cartItem = cart.find(item => item.id === itemId);
+            
+            if (!cartItem) return;
+            
+            if (e.target.classList.contains('plus')) {
+                cartItem.quantity++;
+            } else if (e.target.classList.contains('minus')) {
+                if (cartItem.quantity > 1) {
+                    cartItem.quantity--;
+                } else {
+                    cart = cart.filter(item => item.id !== itemId);
+                }
+            } else if (e.target.classList.contains('remove-item')) {
+                cart = cart.filter(item => item.id !== itemId);
+            }
+            
+            updateCartCount();
+            renderCartItems();
+        });
+
+        // Admin form handling
+        adminMenuItems.addEventListener('click', (e) => {
+            if (e.target.classList.contains('update-menu-item')) {
+                const itemId = parseInt(e.target.getAttribute('data-id'));
+                const menuItem = menuItems.find(item => item.id === itemId);
+                
+                if (menuItem) {
+                    // This would usually go to a form/modal
+                    alert(`Updating ${menuItem.name}`);
+                }
+            } else if (e.target.classList.contains('delete-menu-item')) {
+                const itemId = parseInt(e.target.getAttribute('data-id'));
+                if (confirm('Are you sure you want to delete this menu item?')) {
+                    menuItems = menuItems.filter(item => item.id !== itemId);
+                    renderAdminMenuItems();
+                }
+            }
+        });
+
+        addMenuItemBtn.addEventListener('click', () => {
+            // This would open a modal to add a new menu item
+            alert('Add new menu item form would appear here');
+        });
+
+        adminOrdersList.addEventListener('click', (e) => {
+            if (e.target.classList.contains('update-status')) {
+                const orderId = parseInt(e.target.getAttribute('data-id'));
+                const order = orders.find(o => o.id === orderId);
+                
+                if (order) {
+                    document.getElementById('order-id').value = order.id;
+                    document.getElementById('status').value = order.status;
+                    orderStatusModal.style.display = 'flex';
+                }
+            } else if (e.target.classList.contains('view-order')) {
+                const orderId = parseInt(e.target.getAttribute('data-id'));
+                const order = orders.find(o => o.id === orderId);
+                
+                if (order) {
+                    alert(`Viewing order #${order.id}\nCustomer: ${order.customer}\nTotal: ${formatPrice(order.total)}`);
+                }
+            }
+        });
+
+        closeModalBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                orderStatusModal.style.display = 'none';
+            });
+        });
+
+        statusForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const orderId = parseInt(document.getElementById('order-id').value);
+            const newStatus = document.getElementById('status').value;
+            
+            const order = orders.find(o => o.id === orderId);
+            if (order) {
+                order.status = newStatus;
+                renderAdminOrders();
+                orderStatusModal.style.display = 'none';
+            }
+        });
+
+        // Admin staff handling
+        adminStaffList.addEventListener('click', (e) => {
+            if (e.target.classList.contains('update-staff')) {
+                const staffId = parseInt(e.target.getAttribute('data-id'));
+                const staffMember = staff.find(member => member.id === staffId);
+                
+                if (staffMember) {
+                    // This would update the staff member with form values
+                    alert(`Updating ${staffMember.name}`);
+                }
+            }
+        });
+
+
+if (typeof addStaffMember !== 'undefined' && addStaffMember) {
+    addStaffMember.addEventListener('click', () => {
+        // This would open a modal to add a new staff member
+        alert('Add new staff member form would appear here');
+    });
+}
+
+        // Contact form submission
+        document.getElementById('contactForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            showContactModal();
+            e.target.reset();
+        });
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            renderMenuItems();
+            updateCartCount();
+            attachCheckoutListener();
+            // Modal close events are now handled in showCheckoutModal
+        });
+    </script>
+</body>
+</html>

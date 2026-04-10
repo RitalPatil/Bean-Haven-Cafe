@@ -1,0 +1,218 @@
+<!-- <!doctype html>
+<html>
+<head>
+  <title>Registration</title>
+</head>
+<body>
+  <form action="/RegistrationValidation" method="post">
+    <table align="center" border="3" bgcolor="teal">
+      <caption><font size="4" color="fuchsia">Registration Information</font></caption>
+
+      <tr>
+        <th>Name:</th>
+        <td><input type="text" name="name" required></td>
+      </tr>
+
+      <tr>
+        <th>Email:</th>
+        <td><input type="email" name="email" required></td>
+      </tr>
+
+      <tr>
+        <th>Password:</th>
+        <td><input type="password" name="psw" required></td>
+      </tr>
+
+      <tr>
+        <th>Confirm Password:</th>
+        <td><input type="password" name="cpass" required></td>
+      </tr>
+
+      <tr>
+        <th>Address:</th>
+        <td><textarea name="address" rows="3" cols="20" required></textarea></td>
+      </tr>
+
+      <tr>
+        <th>Gender:</th>
+        <td>
+          <input type="radio" name="gender" value="Male" required> Male
+          <input type="radio" name="gender" value="Female"> Female
+        </td>
+      </tr>
+
+      <tr>
+        <th>Hobbies:</th>
+        <td>
+          <input type="checkbox" name="hobbies" value="Swimming"> Swimming
+          <input type="checkbox" name="hobbies" value="Reading"> Reading
+          <input type="checkbox" name="hobbies" value="Cricket"> Cricket
+          <input type="checkbox" name="hobbies" value="Travelling"> Travelling
+        </td>
+      </tr>
+
+      <tr align="center">
+        <td colspan="2">
+          <input type="submit" value="Register">
+        </td>
+      </tr>
+    </table>
+  </form>
+</body>
+</html> -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Register - Bean Haven Café</title>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-image: url('login image.jpg');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+        .register-container {
+            background: rgba(255,255,255,0.85);
+            padding: 2rem 2.5rem 2rem 2.5rem;
+            border-radius: 18px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.18);
+            width: 100vw;
+            max-width: 370px;
+            min-width: 0;
+            text-align: center;
+            backdrop-filter: blur(4px);
+            border: 1.5px solid rgba(111,78,55,0.15);
+            animation: fadeIn 1.2s cubic-bezier(.39,.575,.56,1) both;
+            box-sizing: border-box;
+        }
+        @media (max-width: 420px) {
+            .register-container {
+                padding: 1.2rem 0.5rem 0.8rem 0.5rem;
+                max-width: 100vw;
+            }
+            .logo {
+                width: 48px;
+                height: 48px;
+            }
+            .register-container h2 {
+                font-size: 1.3rem;
+            }
+        }
+        @keyframes fadeIn {
+            0% { opacity: 0; transform: translateY(40px) scale(0.98); }
+            100% { opacity: 1; transform: translateY(0) scale(1); }
+        }
+        .logo {
+            width: 70px;
+            height: 70px;
+            object-fit: contain;
+            margin-bottom: 1.2rem;
+            filter: drop-shadow(0 2px 8px rgba(111,78,55,0.12));
+            animation: logoPop 1.2s cubic-bezier(.39,.575,.56,1) 0.2s both;
+        }
+        @keyframes logoPop {
+            0% { opacity: 0; transform: scale(0.7) rotate(-10deg); }
+            100% { opacity: 1; transform: scale(1) rotate(0); }
+        }
+        .register-container h2 {
+            text-align: center;
+            margin-bottom: 1.2rem;
+            color: #6F4E37;
+            font-size: 2.1rem;
+            font-weight: 800;
+            letter-spacing: 1px;
+            text-shadow: 0 2px 8px rgba(111,78,55,0.08);
+        }
+        .form-group {
+            margin-bottom: 1.2rem;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #6F4E37;
+        }
+        .form-group input, .form-group select, .form-group textarea {
+            width: 90%;
+            padding: 0.7rem;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        .form-group textarea {
+            resize: vertical;
+            min-height: 70px;
+        }
+        .btn {
+            width: 100%;
+            padding: 0.85rem;
+            background: linear-gradient(90deg, #6F4E37 60%, #a9825a 100%);
+            color: #fff;
+            border: none;
+            border-radius: 6px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: background 0.2s, transform 0.15s;
+            margin-bottom: 8px;
+            font-size: 1.15rem;
+            letter-spacing: 0.5px;
+            text-decoration: none;
+            display: block;
+            box-shadow: 0 2px 8px rgba(111,78,55,0.08);
+        }
+        .btn:hover {
+            background: linear-gradient(90deg, #3E2723 60%, #6F4E37 100%);
+            transform: translateY(-2px) scale(1.03);
+        }
+        .login-link {
+            display: block;
+            text-align: center;
+            margin-top: 1rem;
+            color: #6F4E37;
+            text-decoration: none;
+        }
+        .login-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+<div class="register-container">
+    <h2>Register</h2>
+    <form id="registerForm" action="/RegistrationValidation" method="POST">
+        <div class="form-group">
+            <label for="username">Username</label>
+            <input name="name" type="text" id="username" required />
+        </div>
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input name="email" type="email" id="email" required />
+        </div>
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input name="psw" type="password" id="password" required />
+        </div>
+        <div class="form-group">
+            <label for="gender">Gender</label>
+            <select name="gender" id="gender" required>
+                <option value="">Select Gender</option>
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+                <option value="other">Other</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="address">Address</label>
+            <textarea name="address" id="address" required></textarea>
+        </div>
+        <button type="submit" class="btn">Register</button>
+    </form>
+    <a href="login.html" class="login-link">Already have an account? Login</a>
+</div>
+</body>
+</html>
